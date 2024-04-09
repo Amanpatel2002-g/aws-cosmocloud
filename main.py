@@ -6,6 +6,7 @@ from config.settings import get_settings
 from db.connection import connection
 from api.routers import studentrouter
 load_dotenv()
+import uvicorn
 app = FastAPI()
 
 
@@ -20,6 +21,9 @@ app.include_router(studentrouter)
 @app.get("/info")
 async def get_info():
     return {"message": "Student API is running"}
+
+if __name__=='__main__':
+    uvicorn.run("main:app", port=5000, log_level="info")
 
 
 
